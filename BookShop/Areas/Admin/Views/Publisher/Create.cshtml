@@ -1,0 +1,64 @@
+﻿@using BookShop.Areas.Admin.Models
+@model PublisherCreateViewModel
+
+
+
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Create Publisher</h4>
+                            <p class="card-title-desc">Fill all information below</p>
+
+                            <form class="forms-sample" method="post" asp-action="Create" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label asp-for="Name">Name</label>
+                                            <input asp-for="Name" type="text" class="form-control" placeholder="Name">
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="Adress">Adress</label>
+                                            <input asp-for="Adress" type="text" class="form-control" placeholder="Adress">
+                                            <span asp-validation-for="Adress" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="Email">Email</label>
+                                            <input asp-for="Email" type="text" class="form-control" placeholder="Email">
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="PhoneNumber">Phone Number</label>
+                                            <input asp-for="PhoneNumber" type="text" class="form-control" placeholder="Phone number">
+                                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                  
+                                </div>
+
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
+                                    <button type="button" class="btn btn-secondary waves-effect waves-light">Cancel</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    
+                    
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+
+
