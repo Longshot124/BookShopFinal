@@ -1,0 +1,66 @@
+﻿@using BookShop.Areas.Admin.Models
+@model AuthorUpdateViewModel
+@{
+    ViewData["Title"] = "Update";
+}
+
+
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Update Author</h4>
+                            <p class="card-title-desc">Fill all information below</p>
+
+                            <form class="forms-sample" method="post" asp-action="Update" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label asp-for="Name">Name</label>
+                                            <input asp-for="Name" type="text" class="form-control" placeholder="Name">
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="Surname">Surname</label>
+                                            <input asp-for="Surname" type="text" class="form-control" placeholder="Surname">
+                                            <span asp-validation-for="Surname" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="Age">Email</label>
+                                            <input asp-for="Age" type="text" class="form-control" placeholder="Age">
+                                            <span asp-validation-for="Age" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="Image">Image</label>
+                                            <input asp-for="Image" class="form-control" placeholder="Image" accept="image/*">
+                                            <span asp-validation-for="Image" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
+                                    <button type="button" class="btn btn-secondary waves-effect waves-light">Cancel</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,5 +1,5 @@
 ﻿@using BookShop.Core.Entities
-@model List<Publisher>
+@model List<Category>
 
 <div class="main-content">
 
@@ -26,7 +26,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <div class="card" >
+                    <div class="card">
                         <div class="card-body">
                             <div class="row mb-2">
                                 <div class="col-sm-4">
@@ -39,19 +39,17 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="text-sm-end">
-                                        <a asp-controller="Publisher" asp-action="Create" class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2"><i class="mdi mdi-plus me-1"></i>New Publisher</a>
+                                        <a asp-controller="Category" asp-action="Create" class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2"><i class="mdi mdi-plus me-1"></i>New Category</a>
                                     </div>
                                 </div><!-- end col-->
                             </div>
 
-                            <div class="table-responsive" >
+                            <div class="table-responsive">
                                 <table class="table align-middle table-nowrap">
                                     <thead>
                                         <tr>
-                                            <th>Publisher</th>
-                                            <th>Phone / Email</th>
-                                            <th>Address</th>
-                                            <th>Action</th>
+                                            <th>Name</th>
+                                            
 
                                         </tr>
                                     </thead>
@@ -59,16 +57,9 @@
                                         @foreach (var item in Model)
                                         {
                                             <tr>
-                                                
-                                                <td>@item.Name</td>
-                                                <td>
-                                                    <p class="mb-1">@item.PhoneNumber</p>
-                                                    <p class="mb-0">@item.Email</p>
-                                                </td>
 
-                                                <td>
-                                                    @item.Adress
-                                                </td>
+                                                <td>@item.Name</td>
+                                                
 
                                                 <td>
                                                     <div class="dropdown">
@@ -92,7 +83,7 @@
 
                                 </table>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

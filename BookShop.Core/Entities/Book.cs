@@ -11,6 +11,8 @@ namespace BookShop.Core.Entities
         public string ImageUrl { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public decimal DiscountPrice { get; set; }
+        public byte Offer { get; set; }
         public string Description { get; set; }
         public int PageCount { get; set; }
         public int PublisherId { get;set; }

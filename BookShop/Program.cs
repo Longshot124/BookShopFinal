@@ -1,3 +1,4 @@
+using BookShop.BLL.Helpers;
 using BookShop.Data.DAL;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,9 @@ namespace BookShop
                     });
 
             });
+
+            Constants.RootPath = builder.Environment.WebRootPath;
+            Constants.AuthorPath = Path.Combine(Constants.RootPath, "assets", "images", "author");
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
