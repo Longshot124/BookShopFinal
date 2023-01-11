@@ -49,7 +49,7 @@ namespace BookShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("BookShop.Core.Entities.Book", b =>
@@ -104,7 +104,7 @@ namespace BookShop.Migrations
 
                     b.HasIndex("PublisherId");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("BookShop.Core.Entities.Category", b =>
@@ -124,7 +124,7 @@ namespace BookShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("BookShop.Core.Entities.Publisher", b =>
@@ -155,7 +155,7 @@ namespace BookShop.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publishers");
+                    b.ToTable("Publishers", (string)null);
                 });
 
             modelBuilder.Entity("BookShop.Core.Entities.Slider", b =>
@@ -166,34 +166,33 @@ namespace BookShop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ButtonText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ButtonUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("OldPrice")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
                     b.Property<string>("SliderName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SubTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sliders");
+                    b.HasIndex("BookId");
+
+                    b.ToTable("Sliders", (string)null);
                 });
 
             modelBuilder.Entity("BookShop.Core.Entities.Book", b =>
@@ -221,6 +220,17 @@ namespace BookShop.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Publisher");
+                });
+
+            modelBuilder.Entity("BookShop.Core.Entities.Slider", b =>
+                {
+                    b.HasOne("BookShop.Core.Entities.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
                 });
 
             modelBuilder.Entity("BookShop.Core.Entities.Author", b =>

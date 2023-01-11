@@ -1,0 +1,122 @@
+﻿@using BookShop.Core.Entities
+@model List<Book>
+
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0 font-size-18">Customers</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
+                                <li class="breadcrumb-item active">Customers</li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row mb-2">
+                                <div class="col-sm-4">
+                                    <div class="search-box me-2 mb-2 d-inline-block">
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control" placeholder="Search...">
+                                            <i class="bx bx-search-alt search-icon"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="text-sm-end">
+                                        <a asp-controller="Book" asp-action="Create" class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2"><i class="mdi mdi-plus me-1"></i>New Book</a>
+                                    </div>
+                                </div><!-- end col-->
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table align-middle table-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>DiscountPrice</th>
+                                            <th>Offer</th>
+                                            <th>Page Count</th>
+                                            <th>Category</th>
+                                            <th>Publisher</th>
+                                            <th>Author</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <img style="border-radius:0px; object-fit:contain; height:150px; width:150px;" src="~/assets/images/books/@item.ImageUrl" alt="image">
+
+                                                </td>
+                                                <td>@item.Name</td>
+                                                <td>@item.Price</td>
+                                                <td>@item.DiscountPrice</td>
+                                                <td>@item.Offer</td>
+                                                <td>@item.PageCount</td>
+                                                <td>@item.Category.Name</td>
+                                                <td>@item.Publisher.Name</td>
+                                                <td>@item.Author.Name</td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <a href="#" class="dropdown-toggle card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="mdi mdi-dots-horizontal font-size-18"></i>
+                                                        </a>
+                                                        <ul class="dropdown-menu dropdown-menu-end">
+                                                            <li>
+                                                                <a asp-action="update" asp-route-id="@item.Id" class="dropdown-item"><i class="mdi mdi-pencil font-size-16 text-success me-1"></i> Edit</a>
+
+                                                            </li>
+
+                                                            <li>
+                                                                <form asp-action="delete" method="post" asp-route-id="@item.Id">
+                                                                    <button type="submit" class="dropdown-item"><i class="mdi mdi-trash-can font-size-16 text-danger me-1"></i> Delete</button>
+                                                                </form>
+
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+
+
+                                    </tbody>
+
+
+
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+        </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+
+</div>

@@ -1,0 +1,98 @@
+﻿@using BookShop.Areas.Admin.Models
+@model BookUpdateViewModel
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Update Book</h4>
+                            <p class="card-title-desc">Fill all information below</p>
+
+                            <form class="forms-sample" method="post" asp-action="Update" enctype="multipart/form-data">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label asp-for="Name">Name</label>
+                                            <input asp-for="Name" type="text" class="form-control" placeholder="Name">
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="Price">Price</label>
+                                            <input asp-for="Price" class="form-control" placeholder="Price">
+                                            <span asp-validation-for="Price" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="DiscountPrice">DiscountPrice</label>
+                                            <input asp-for="DiscountPrice" class="form-control" placeholder="DiscountPrice">
+                                            <span asp-validation-for="DiscountPrice" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="Offer">Offer</label>
+                                            <input asp-for="Offer" class="form-control" placeholder="Offer">
+                                            <span asp-validation-for="Offer" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="PageCount">PageCount</label>
+                                            <input asp-for="PageCount" class="form-control" placeholder="PageCount">
+                                            <span asp-validation-for="PageCount" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="Description">Description</label>
+                                            <input asp-for="Description" type="text" class="form-control" placeholder="Description">
+                                            <span asp-validation-for="Description" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="CategoryId">Category</label>
+                                            <select asp-for="CategoryId" asp-items="Model.Categories" class="form-control" placeholder="Category"></select>
+                                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="PublisherId">Publisher</label>
+                                            <select asp-for="PublisherId" asp-items="Model.Publishers" class="form-control" placeholder="Publisher"></select>
+                                            <span asp-validation-for="PublisherId" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="AuthorId">Author</label>
+                                            <select asp-for="AuthorId" asp-items="Model.Authors" class="form-control" placeholder="Author"></select>
+                                            <span asp-validation-for="AuthorId" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="Image">Image</label>
+                                            <input asp-for="Image" class="form-control" placeholder="Image" accept="image/*">
+                                            <span asp-validation-for="Image" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
+                                    <button type="button" class="btn btn-secondary waves-effect waves-light">Cancel</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

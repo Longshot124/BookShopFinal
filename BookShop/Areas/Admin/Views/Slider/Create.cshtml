@@ -1,0 +1,71 @@
+﻿@using BookShop.Areas.Admin.Models
+@model SliderCreateViewModel
+
+
+
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Create Slider</h4>
+                            <p class="card-title-desc">Fill all information below</p>
+
+                            <form class="forms-sample" method="post" asp-action="Create" enctype="multipart/form-data">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label asp-for="SliderName">Name</label>
+                                            <input asp-for="SliderName" type="text" class="form-control" placeholder="SliderName">
+                                            <span asp-validation-for="SliderName" class="text-danger"></span>
+
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="ButtonText">ButtonText</label>
+                                            <input asp-for="ButtonText" class="form-control" placeholder="ButtonText">
+                                            <span asp-validation-for="ButtonText" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="ButtonUrl">ButtonUrl</label>
+                                            <input asp-for="ButtonUrl" class="form-control" placeholder="ButtonUrl">
+                                            <span asp-validation-for="ButtonUrl" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="BookId">Book</label>
+                                            <select asp-for="BookId" asp-items="Model.Books" class="form-control" placeholder="Book"></select>
+                                            <span asp-validation-for="BookId" class="text-danger"></span>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label asp-for="Image">Image</label>
+                                            <input asp-for="Image" class="form-control" placeholder="Image" accept="image/*">
+                                            <span asp-validation-for="Image" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
+                                    <button type="button" class="btn btn-secondary waves-effect waves-light">Cancel</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

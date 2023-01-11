@@ -8,12 +8,13 @@ namespace BookShop.Core.Entities
 {
     public class Slider : Entity
     {
-       public string SliderName { get; set; }
-       public string Title { get; set; }
-       public string SubTitle { get; set; }
-       public int Price { get; set; }
-       public int OldPrice { get; set; }
-       public string ButtonUrl { get; set; }
+        public string ImageUrl { get; set; }
+        public string SliderName { get; set; }
+        public Book Book { get; set; }
+        public int BookId { get; set; }
+        public string ButtonText { get; set; }
+        public string ButtonUrl { get; set; }
+
 
     }
 }

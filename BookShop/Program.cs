@@ -25,6 +25,10 @@ namespace BookShop
 
             Constants.RootPath = builder.Environment.WebRootPath;
             Constants.AuthorPath = Path.Combine(Constants.RootPath, "assets", "images", "author");
+            Constants.BookPath = Path.Combine(Constants.RootPath, "assets", "images", "books");
+            Constants.SliderPath = Path.Combine(Constants.RootPath, "assets", "images", "sliders");
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
