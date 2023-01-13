@@ -27,6 +27,8 @@ namespace BookShop
             Constants.AuthorPath = Path.Combine(Constants.RootPath, "assets", "images", "author");
             Constants.BookPath = Path.Combine(Constants.RootPath, "assets", "images", "books");
             Constants.SliderPath = Path.Combine(Constants.RootPath, "assets", "images", "sliders");
+            Constants.PartnerPath = Path.Combine(Constants.RootPath, "assets", "images", "partner");
+
 
 
             var app = builder.Build();

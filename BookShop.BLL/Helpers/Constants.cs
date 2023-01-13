@@ -13,5 +13,6 @@ namespace BookShop.BLL.Helpers
         public static string AuthorPath;
         public static string BookPath;
         public static string SliderPath;
+        public static string PartnerPath;
     }
 }

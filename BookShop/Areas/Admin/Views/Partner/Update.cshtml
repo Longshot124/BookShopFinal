@@ -1,6 +1,8 @@
 ﻿@using BookShop.Areas.Admin.Models
-@model AuthorCreateViewModel
-
+@model PartnerUpdateViewModel
+@{
+    ViewData["Title"] = "Update";
+}
 
 
 <div class="main-content">
@@ -11,10 +13,10 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">Create Author</h4>
+                            <h4 class="card-title">Update Partner</h4>
                             <p class="card-title-desc">Fill all information below</p>
 
-                            <form class="forms-sample" method="post" asp-action="Create" enctype="multipart/form-data">
+                            <form class="forms-sample" method="post" asp-action="Update" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="mb-3">
@@ -24,20 +26,11 @@
 
                                         </div>
                                         <div class="mb-3">
-                                            <label asp-for="Surname">Surname</label>
-                                            <input asp-for="Surname" type="text" class="form-control" placeholder="Surname">
-                                            <span asp-validation-for="Surname" class="text-danger"></span>
+                                            <label asp-for="PartnerUrl">PartnerUrl</label>
+                                            <input asp-for="PartnerUrl" type="text" class="form-control" placeholder="PartnerUrl">
+                                            <span asp-validation-for="PartnerUrl" class="text-danger"></span>
                                         </div>
-                                        <div class="mb-3">
-                                            <label asp-for="Surname">Surname</label>
-                                            <textarea asp-for="Surname" type="text" class="form-control editor" placeholder="Surname"></textarea>
-                                            <span asp-validation-for="Surname" class="text-danger"></span>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label asp-for="Age">Age</label>
-                                            <input asp-for="Age" type="text" class="form-control" placeholder="Age">
-                                            <span asp-validation-for="Age" class="text-danger"></span>
-                                        </div>
+                                        
                                         <div class="mb-3">
                                             <label asp-for="Image">Image</label>
                                             <input asp-for="Image" class="form-control" placeholder="Image" accept="image/*">
@@ -66,6 +59,4 @@
 </div>
 
 
-@section Scripts{
-    <partial name="_CKEScriptsPartial" />
-}
+

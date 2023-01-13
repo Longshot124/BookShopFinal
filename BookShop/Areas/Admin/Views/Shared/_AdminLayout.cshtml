@@ -526,6 +526,8 @@
                                 <li><a asp-controller="Category" asp-action="Index" key="t-customers">Categories</a></li>
                                 <li><a asp-controller="Book" asp-action="Index" key="t-customers">Books</a></li>
                                 <li><a asp-controller="Slider" asp-action="Index" key="t-customers">Sliders</a></li>
+                                <li><a asp-controller="Partner" asp-action="Index" key="t-customers">Partners</a></li>
+                                <li><a asp-controller="BLogCategory" asp-action="Index" key="t-customers">Blog Category</a></li>
 
                                 <li><a href="ecommerce-checkout.html" key="t-checkout">Checkout</a></li>
                                 <li><a href="ecommerce-shops.html" key="t-shops">Shops</a></li>
@@ -839,5 +841,6 @@
 
     <!-- App js -->
     <script src="~/admin/js/app.js"></script>
+    @await RenderSectionAsync("Scripts", false)
 </body>
 </html>

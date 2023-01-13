@@ -9,12 +9,10 @@ namespace BookShop.Areas.Admin.Controllers
     public class PublisherController : BaseController
     {
         private readonly BookDbContext _bookDbContext;
-        private readonly IWebHostEnvironment _environment;
 
-        public PublisherController(BookDbContext bookDbContext, IWebHostEnvironment environment)
+        public PublisherController(BookDbContext bookDbContext)
         {
             _bookDbContext = bookDbContext;
-            _environment = environment;
         }
 
         public async Task<IActionResult> Index()

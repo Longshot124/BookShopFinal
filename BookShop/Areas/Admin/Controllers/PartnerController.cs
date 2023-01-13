@@ -8,19 +8,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookShop.Areas.Admin.Controllers
 {
-    public class AuthorController : BaseController
+    public class PartnerController : BaseController
     {
         private readonly BookDbContext _bookDbContext;
 
-        public AuthorController(BookDbContext bookDbContext, IWebHostEnvironment environment)
+        public PartnerController(BookDbContext bookDbContext)
         {
             _bookDbContext = bookDbContext;
         }
 
         public async Task<IActionResult> Index()
         {
-            var authors = await _bookDbContext.Authors.ToListAsync();
-            return View(authors);
+            var partners = await _bookDbContext.Partners.ToListAsync();
+            return View(partners);
         }
 
         public IActionResult Create()
@@ -30,8 +30,7 @@ namespace BookShop.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-        public async Task<IActionResult> Create(AuthorCreateViewModel model)
+        public async Task<IActionResult> Create(PartnerCreateViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -46,62 +45,59 @@ namespace BookShop.Areas.Admin.Controllers
                 return View();
             }
 
-            var unicalName = await model.Image.GenerateFile(Constants.AuthorPath);
+            var unicalName = await model.Image.GenerateFile(Constants.PartnerPath);
 
-            var author = new Author
+            var partner = new Partner
             {
                 ImageUrl = unicalName,
                 Name = model.Name,
-                Surname = model.Surname,
-                Age = model.Age,
+                PartnerUrl = model.PartnerUrl
+                
             };
 
-            await _bookDbContext.Authors.AddAsync(author);
+            await _bookDbContext.Partners.AddAsync(partner);
             await _bookDbContext.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
-            
-        }
 
+        }
         public async Task<IActionResult> Update(int? id)
         {
             if (id == null) return NotFound();
 
-            var authors = await _bookDbContext.Authors.FindAsync(id);
+            var partners = await _bookDbContext.Partners.FindAsync(id);
 
-            if(authors == null) return NotFound();
+            if (partners == null) return NotFound();
 
-            var authorModel = new AuthorUpdateViewModel
+            var partnerViewModel = new PartnerUpdateViewModel
             {
-                Id = authors.Id,
-                Name = authors.Name,
-                Surname = authors.Surname,
-                Age = authors.Age,
-                ImageUrl = authors.ImageUrl
+                ImageUrl = partners.ImageUrl,
+                Id = partners.Id,
+                Name = partners.Name,
+                PartnerUrl = partners.PartnerUrl,
             };
-            return View(authorModel);
-        }
 
+            return View(partnerViewModel);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-        public async Task<IActionResult> Update(int? id, AuthorUpdateViewModel model)
+        public async Task<IActionResult> Update(int? id, PartnerUpdateViewModel model)
         {
-            if(id == null) return NotFound();
+            if (id == null) return NotFound();
 
-            var authors = await _bookDbContext.Authors.FindAsync(id);
+            var partners = await _bookDbContext.Partners.FindAsync(id);
 
-            if (authors == null) return NotFound();
-            if (authors.Id != id) return BadRequest();
+            if (partners == null) return NotFound();
+            if (partners.Id != id) return BadRequest();
 
 
-            if (model.Image !=null)
+            if (model.Image != null)
             {
                 if (!ModelState.IsValid)
                 {
                     return View(new AuthorUpdateViewModel
                     {
-                        ImageUrl = authors.ImageUrl
+                        ImageUrl = partners.ImageUrl
                     });
                 }
                 if (!model.Image.IsImage())
@@ -109,7 +105,7 @@ namespace BookShop.Areas.Admin.Controllers
                     ModelState.AddModelError("Image", "You must choose photo");
                     return View(new AuthorUpdateViewModel
                     {
-                        ImageUrl = authors.ImageUrl
+                        ImageUrl = partners.ImageUrl
                     });
                 }
                 if (!model.Image.IsAllowedSize(5))
@@ -117,42 +113,40 @@ namespace BookShop.Areas.Admin.Controllers
                     ModelState.AddModelError("Image", "Image size is over 5MB, Please select less than 5 mb");
                     return View(model);
                 }
-                var unicalName = await model.Image.GenerateFile(Constants.AuthorPath);
-                authors.ImageUrl = unicalName;
+                var unicalName = await model.Image.GenerateFile(Constants.PartnerPath);
+                partners.ImageUrl = unicalName;
             }
 
-            authors.Name = model.Name;
-            authors.Surname = model.Surname;
-            authors.Age = model.Age;
+            partners.Name = model.Name;
+            partners.PartnerUrl = model.PartnerUrl;
             
+
             await _bookDbContext.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
 
-            var dbAuthor = await _bookDbContext.Authors.FindAsync(id);
+            var dbPartner = await _bookDbContext.Partners.FindAsync(id);
 
-            if (dbAuthor == null) return NotFound();
-            if (dbAuthor.Id != id) return BadRequest();
+            if (dbPartner == null) return NotFound();
+            if (dbPartner.Id != id) return BadRequest();
 
-            var unicalPath = Path.Combine(Constants.RootPath, "assets", "images", "author",dbAuthor.ImageUrl);
+            var unicalPath = Path.Combine(Constants.RootPath, "assets", "images", "partner", dbPartner.ImageUrl);
 
             if (System.IO.File.Exists(unicalPath))
                 System.IO.File.Delete(unicalPath);
 
-            _bookDbContext.Authors.Remove(dbAuthor);
+            _bookDbContext.Partners.Remove(dbPartner);
 
             await _bookDbContext.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
 
         }
-
     }
 }
