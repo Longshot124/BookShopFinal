@@ -28,6 +28,8 @@ namespace BookShop
             Constants.BookPath = Path.Combine(Constants.RootPath, "assets", "images", "books");
             Constants.SliderPath = Path.Combine(Constants.RootPath, "assets", "images", "sliders");
             Constants.PartnerPath = Path.Combine(Constants.RootPath, "assets", "images", "partner");
+            Constants.BlogPath = Path.Combine(Constants.RootPath, "assets", "images", "blog");
+
 
 
 

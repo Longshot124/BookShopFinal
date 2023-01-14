@@ -13,5 +13,7 @@ namespace BookShop.Core.Entities
         public string ImageUrl { get; set; }
         public string Author { get; set; }
         public DateTime Created { get; set; }
+        public BlogCategory BlogCategory { get; set; }
+        public int BlogCategoryId { get; set; }
     }
 }

@@ -1,0 +1,79 @@
+﻿@using BookShop.Areas.Admin.Models
+@model BlogCreateViewModel
+
+
+
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Create Book</h4>
+                            <p class="card-title-desc">Fill all information below</p>
+
+                            <form class="forms-sample" method="post" asp-action="Create" enctype="multipart/form-data">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label asp-for="Title">Title</label>
+                                            <input asp-for="Title" type="text" class="form-control" placeholder="Title">
+                                            <span asp-validation-for="Title" class="text-danger"></span>
+
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="Description">Description</label>
+                                            <textarea asp-for="Description" type="text" class="form-control editor" placeholder="Description"></textarea>
+                                            <span asp-validation-for="Description" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="Author">Author</label>
+                                            <input asp-for="Author" class="form-control" placeholder="Author">
+                                            <span asp-validation-for="Author" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label asp-for="Created">Create Time</label>
+                                            <input asp-for="Created" class="form-control" placeholder="Create Time">
+                                            <span asp-validation-for="Created" class="text-danger"></span>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label asp-for="BlogCategoryId">Category</label>
+                                            <select asp-for="BlogCategoryId" asp-items="Model.BlogCategories" class="form-control" placeholder="BCategory"></select>
+                                            <span asp-validation-for="BlogCategoryId" class="text-danger"></span>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label asp-for="Image">Image</label>
+                                            <input asp-for="Image" class="form-control" placeholder="Image" accept="image/*">
+                                            <span asp-validation-for="Image" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
+                                    <button type="button" class="btn btn-secondary waves-effect waves-light">Cancel</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_CKEScriptsPartial" />
+}
+
