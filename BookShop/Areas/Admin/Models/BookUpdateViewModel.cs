@@ -12,6 +12,7 @@ namespace BookShop.Areas.Admin.Models
         public List<SelectListItem> Publishers { get; set; } = new();
         public IFormFile? Image { get; set; }
         public string Name { get; set; }
+        public string BookInfo { get; set; }
         public decimal Price { get; set; }
         public decimal DiscountPrice { get; set; }
         public byte Offer { get; set; }

@@ -15,6 +15,7 @@ namespace BookShop.Core.Entities
         public byte Offer { get; set; }
         public string Description { get; set; }
         public int PageCount { get; set; }
+        public string BookInfo { get; set; }
         public int PublisherId { get;set; }
         public int AuthorId { get; set; }
         public int CategoryId { get; set; }

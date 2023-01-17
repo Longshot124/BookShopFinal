@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using BookShop.Core.Entities
+@using BookShop.ViewModels
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -40,7 +45,7 @@
 <body>
 
 	<div class="page-wraper">
-		<div id="loading-area" class="preloader-wrapper-1">
+		@*<div id="loading-area" class="preloader-wrapper-1">
 			<div class="preloader-inner">
 				<div class="preloader-shade"></div>
 				<div class="preloader-wrap"></div>
@@ -49,7 +54,7 @@
 				<div class="preloader-wrap wrap4"></div>
 				<div class="preloader-wrap wrap5"></div>
 			</div>
-		</div>
+		</div>*@
 
 		<!-- Header -->
 		<header class="site-header mo-left header style-1">
@@ -313,36 +318,9 @@
 						<div class="toggle-items row">
 							<div class="footer-col-book">
 								<ul>
-									<li><a href="books-grid-view.html">Architecture</a></li>
-									<li><a href="books-grid-view.html">Art</a></li>
-									<li><a href="books-grid-view.html">Action</a></li>
-									<li><a href="books-grid-view.html">Biography</a></li>
-									<li><a href="books-grid-view.html">Body, Mind & Spirit</a></li>
-									<li><a href="books-grid-view.html">Business & Economics</a></li>
-									<li><a href="books-grid-view.html">Children Fiction</a></li>
-									<li><a href="books-grid-view.html">Children Non-Fiction</a></li>
-									<li><a href="books-grid-view.html">Comics & Graphics</a></li>
-									<li><a href="books-grid-view.html">Cooking</a></li>
-									<li><a href="books-grid-view.html">Crafts & Hobbies</a></li>
-									<li><a href="books-grid-view.html">Design</a></li>
-									<li><a href="books-grid-view.html">Drama</a></li>
-									<li><a href="books-grid-view.html">Education</a></li>
-									<li><a href="books-grid-view.html">Family & Relationships</a></li>
-									<li><a href="books-grid-view.html">Fiction</a></li>
-									<li><a href="books-grid-view.html">Foreign Language</a></li>
-									<li><a href="books-grid-view.html">Games</a></li>
-									<li><a href="books-grid-view.html">Gardening</a></li>
-									<li><a href="books-grid-view.html">Health & Fitness</a></li>
-									<li><a href="books-grid-view.html">History</a></li>
-									<li><a href="books-grid-view.html">House & Home</a></li>
-									<li><a href="books-grid-view.html">Humor</a></li>
-									<li><a href="books-grid-view.html">Literary Collections</a></li>
-									<li><a href="books-grid-view.html">Mathematics</a></li>
-									<li><a href="books-grid-view.html">Medical</a></li>
-									<li><a href="books-grid-view.html">Nature</a></li>
-									<li><a href="books-grid-view.html">Performing Arts</a></li>
-									<li><a href="books-grid-view.html">Pets</a></li>
-									<li><a href="books-grid-view.html">Show others</a></li>
+									
+									@await Component.InvokeAsync("Category")
+
 								</ul>
 							</div>
 						</div>

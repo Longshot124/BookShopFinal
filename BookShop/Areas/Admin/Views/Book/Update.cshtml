@@ -28,6 +28,12 @@
 
                                         </div>
                                         <div class="mb-3">
+                                            <label asp-for="BookInfo">Book Information</label>
+                                            <input asp-for="BookInfo" type="text" class="form-control" placeholder="Book Informatio">
+                                            <span asp-validation-for="BookInfo" class="text-danger"></span>
+
+                                        </div>
+                                        <div class="mb-3">
                                             <label asp-for="Price">Price</label>
                                             <input asp-for="Price" class="form-control" placeholder="Price">
                                             <span asp-validation-for="Price" class="text-danger"></span>

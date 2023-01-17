@@ -1,0 +1,9 @@
+﻿@using BookShop.Core.Entities
+@{
+	List<Category> Categories = Model;
+}
+
+@foreach (var category in Categories)
+{
+	<li><a href="books-grid-view.html">@category.Name</a></li>
+}

@@ -149,6 +149,7 @@ namespace BookShop.Areas.Admin.Controllers
                 Offer = model.Offer,
                 Description = model.Description,
                 PageCount = model.PageCount,
+                BookInfo = model.BookInfo,
 
             };
 
@@ -207,6 +208,7 @@ namespace BookShop.Areas.Admin.Controllers
                 PublisherId = book.PublisherId,
                 Authors = selectAuthor,
                 AuthorId = book.AuthorId,
+                BookInfo = book.BookInfo,
 
             };
 
@@ -287,6 +289,7 @@ namespace BookShop.Areas.Admin.Controllers
             book.CategoryId = model.CategoryId;
             book.PublisherId = model.PublisherId;
             book.AuthorId = model.AuthorId;
+            book.BookInfo = model.BookInfo;
 
             await _bookDbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
