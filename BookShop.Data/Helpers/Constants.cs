@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookShop.BLL.Helpers
+namespace BookShop.Data.Helpers
 {
     public class Constants
     {
@@ -15,5 +15,8 @@ namespace BookShop.BLL.Helpers
         public static string SliderPath;
         public static string PartnerPath;
         public static string BlogPath;
+        public static string FooterLogoPath;
+
+       
     }
 }

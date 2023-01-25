@@ -128,6 +128,9 @@ namespace BookShop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("BookLanguageId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -165,11 +168,33 @@ namespace BookShop.Migrations
 
                     b.HasIndex("AuthorId");
 
+                    b.HasIndex("BookLanguageId");
+
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("PublisherId");
 
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("BookShop.Core.Entities.BookLanguage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BookLanguages");
                 });
 
             modelBuilder.Entity("BookShop.Core.Entities.Category", b =>
@@ -190,6 +215,42 @@ namespace BookShop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("BookShop.Core.Entities.FooterLogo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FacebookLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FooterLogoUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InstagramLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LinkedinLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YoutubetLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FooterLogos");
                 });
 
             modelBuilder.Entity("BookShop.Core.Entities.Partner", b =>
@@ -307,6 +368,12 @@ namespace BookShop.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("BookShop.Core.Entities.BookLanguage", "BookLanguage")
+                        .WithMany("Books")
+                        .HasForeignKey("BookLanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BookShop.Core.Entities.Category", "Category")
                         .WithMany("Books")
                         .HasForeignKey("CategoryId")
@@ -320,6 +387,8 @@ namespace BookShop.Migrations
                         .IsRequired();
 
                     b.Navigation("Author");
+
+                    b.Navigation("BookLanguage");
 
                     b.Navigation("Category");
 
@@ -345,6 +414,11 @@ namespace BookShop.Migrations
             modelBuilder.Entity("BookShop.Core.Entities.BlogCategory", b =>
                 {
                     b.Navigation("Blogs");
+                });
+
+            modelBuilder.Entity("BookShop.Core.Entities.BookLanguage", b =>
+                {
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("BookShop.Core.Entities.Category", b =>

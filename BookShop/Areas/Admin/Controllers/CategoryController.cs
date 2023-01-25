@@ -9,12 +9,10 @@ namespace BookShop.Areas.Admin.Controllers
     public class CategoryController : BaseController
     {
         private readonly BookDbContext _bookDbContext;
-        private readonly IWebHostEnvironment _environment;
 
-        public CategoryController(BookDbContext bookDbContext, IWebHostEnvironment environment)
+        public CategoryController(BookDbContext bookDbContext)
         {
             _bookDbContext = bookDbContext;
-            _environment = environment;
         }
 
         public async Task<IActionResult> Index()

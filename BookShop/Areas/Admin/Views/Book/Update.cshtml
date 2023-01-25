@@ -74,6 +74,11 @@
                                             <span asp-validation-for="AuthorId" class="text-danger"></span>
                                         </div>
                                         <div class="mb-3">
+                                            <label asp-for="BookLanguageId">Language</label>
+                                            <select asp-for="BookLanguageId" asp-items="Model.BookLanguages" class="form-control" placeholder="Language"></select>
+                                            <span asp-validation-for="BookLanguageId" class="text-danger"></span>
+                                        </div>
+                                        <div class="mb-3">
                                             <label asp-for="Image">Image</label>
                                             <input asp-for="Image" class="form-control" placeholder="Image" accept="image/*">
                                             <span asp-validation-for="Image" class="text-danger"></span>

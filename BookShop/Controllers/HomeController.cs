@@ -18,13 +18,21 @@ namespace BookShop.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var slider = await _bookDbContext.Sliders.Include(e => e.Book).ThenInclude(e=>e.Author).Include(e => e.Book).ThenInclude(e=>e.Category).ToListAsync();
+            var slider = await _bookDbContext.Sliders
+                .Where(e => !e.IsDeleted)
+                .Include(e => e.Book).ThenInclude(e => e.Author)
+                .Include(e => e.Book).ThenInclude(e => e.Category)
+                .ToListAsync();
             var book = await _bookDbContext.Books.Where(e => !e.IsDeleted).ToListAsync();
+            var category = await _bookDbContext.Categories.Where(e => !e.IsDeleted).ToListAsync();
             var homeViewModel = new HomeViewModel
             {
                 Books = book,
                 Sliders = slider,
+                Categories = category,
+
             };
+
             return View(homeViewModel);
         }
 

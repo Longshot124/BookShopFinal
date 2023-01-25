@@ -1,0 +1,12 @@
+﻿
+using BookShop.Core.Entities
+@model NavbarCategoryViewModel
+@{
+	var categories = Model.Categories;
+}
+
+@foreach (var category in categories)
+{
+	<option>@category.Name</option>
+}
+

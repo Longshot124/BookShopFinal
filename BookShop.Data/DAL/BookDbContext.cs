@@ -1,4 +1,5 @@
 ﻿using BookShop.Core.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ namespace BookShop.Data.DAL
     {
         public BookDbContext(DbContextOptions<BookDbContext> options): base(options)
         {
-
         }
 
         public DbSet<Slider> Sliders { get; set; }
@@ -23,5 +23,7 @@ namespace BookShop.Data.DAL
         public DbSet<Partner> Partners { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<BlogCategory> BlogCategories { get; set; }
+        public DbSet<BookLanguage> BookLanguages { get; set; }
+        public DbSet<FooterLogo> FooterLogos { get; set; }
     }
 }

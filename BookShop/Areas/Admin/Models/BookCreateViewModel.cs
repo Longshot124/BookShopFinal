@@ -8,6 +8,7 @@ namespace BookShop.Areas.Admin.Models
         public List<SelectListItem>? Categories { get; set; } 
         public List<SelectListItem>? Authors { get; set; } 
         public List<SelectListItem>? Publishers { get; set; }
+        public List<SelectListItem>? BookLanguages { get; set; }
         public IFormFile Image { get; set; }
         public string Name { get; set; }
         public string BookInfo { get; set; }
@@ -19,6 +20,7 @@ namespace BookShop.Areas.Admin.Models
         public int PublisherId { get; set; } 
         public int AuthorId { get; set; }
         public int CategoryId { get; set; }
+        public int BookLanguageId { get; set; }
 
     }
 }

@@ -24,9 +24,12 @@ namespace BookShop.Controllers
                 .Include(c => c.Publisher)
                 .ToListAsync();
 
-            var viewModel = new HomeViewModel
+            var category = await _bookDbContext.Categories.Where(c => !c.IsDeleted).ToListAsync();
+
+            var viewModel = new ShopViewModel
             {
-                Books = books
+                Books = books,
+                Categories = category
             };
 
             return View(viewModel);
@@ -34,7 +37,12 @@ namespace BookShop.Controllers
         public async Task<IActionResult> Details(int? id)
         {
             if (id is null) return NotFound();
-            var book = await _bookDbContext.Books.Where(c => !c.IsDeleted && c.Id == id).FirstOrDefaultAsync();
+            var book = await _bookDbContext.Books.Where(c => !c.IsDeleted && c.Id == id)
+                .Include(a=>a.Author)
+                .Include(a => a.Category)
+                .Include(a => a.Publisher)
+                .Include(a => a.BookLanguage)
+                .FirstOrDefaultAsync();
             if (book is null) return NotFound();
 
             return View(book);
@@ -62,9 +70,12 @@ namespace BookShop.Controllers
         //    //return PartialView("_CourseSearchPartial", courses);
         //}
 
-        public async Task<IActionResult> BlogSidebar(int? id)
+        public async Task<IActionResult> BookSidebar(int? id)
         {
-            var categories = await _bookDbContext.Categories.Where(c => c.Id == id).Include(c => c.Books).ToListAsync();
+            var categories = await _bookDbContext.Categories
+                .Where(c => c.Id == id)
+                .Include(c => c.Books)
+                .ToListAsync();
             return View(categories);
         }
 

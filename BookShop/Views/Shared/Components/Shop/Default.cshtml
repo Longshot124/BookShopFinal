@@ -8,7 +8,10 @@
 	<div class="col-book style-1">
 		<div class="dz-shop-card style-1">
 			<div class="dz-media">
-				<img src="assets/images/books/@book.ImageUrl" alt="book">
+				<a asp-controller="shop" asp-action="details" asp-route-id="@book.Id">
+					<img src="assets/images/books/@book.ImageUrl" alt="book">
+
+				</a>
 			</div>
 			<div class="bookmark-btn style-2">
 				<input class="form-check-input" type="checkbox" id="flexCheckDefault2">

@@ -1,0 +1,127 @@
+﻿@model RegistrationViewModel
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from bookland.dexignzone.com/xhtml/shop-registration.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Dec 2022 16:19:18 GMT -->
+
+
+<body>
+	<div class="page-wraper">
+		<div id="loading-area" class="preloader-wrapper-1">
+			<div class="preloader-inner">
+				<div class="preloader-shade"></div>
+				<div class="preloader-wrap"></div>
+				<div class="preloader-wrap wrap2"></div>
+				<div class="preloader-wrap wrap3"></div>
+				<div class="preloader-wrap wrap4"></div>
+				<div class="preloader-wrap wrap5"></div>
+			</div> 
+		</div>
+		
+		
+		<div class="page-content">
+			<!-- inner page banner -->
+			<div class="dz-bnr-inr overlay-secondary-dark dz-bnr-inr-sm" style="background-image:url(images/background/bg3.jpg);">
+				<div class="container">
+					<div class="dz-bnr-inr-entry">
+						<h1>Registration</h1>
+						<nav aria-label="breadcrumb" class="breadcrumb-row">
+							<ul class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index.html"> Home</a></li>
+								<li class="breadcrumb-item">Registration</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+			<!-- inner page banner End-->
+			
+			<!-- contact area -->
+			<section class="content-inner shop-account">
+				<!-- Product -->
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-lg-6 col-md-6 mb-4">
+							<div class="login-area">
+							<div class="text-danger" asp-validation-summary="ModelOnly"></div>
+								<form method="post" asp-action="register">
+									<h4 class="text-secondary">Registration</h4>
+									<p class="font-weight-600">If you don't have an account with us, please Registration.</p>
+									<div class="mb-4">
+										<label class="label-title">UserName</label>
+										<input asp-for="UserName"  required="" class="form-control" placeholder="Your UserName" >
+										<span asp-validation-for="UserName"></span>
+									</div>
+									<div class="mb-4">
+										<label class="label-title">First Name</label>
+										<input asp-for="FirstName"  required="" class="form-control" placeholder="Your First Name" >
+										<span asp-validation-for="FirstName"></span>
+									</div>
+									<div class="mb-4">
+										<label class="label-title">Last Name</label>
+										<input asp-for="LastName"  required="" class="form-control" placeholder="Your Last Name" >
+										<span asp-validation-for="LastName"></span>
+									</div>
+									<div class="mb-4">
+										<label class="label-title">Age</label>
+										<input asp-for="Age"  required="" class="form-control" placeholder="Age" >
+										<span asp-validation-for="Age"></span>
+									</div>
+									<div class="mb-4">
+										<label class="label-title">Gender</label>
+										<select asp-for="Gender"  required="" class="form-control" placeholder="Gender" >
+											<option value="true">Male</option>
+											<option value="false">Female</option>
+										</select>
+										<span asp-validation-for="Gender"></span>
+									</div>
+									<div class="mb-4">
+										<label class="label-title">Email address *</label>
+										<input asp-for="Email"  required="" class="form-control" placeholder="Your Email address" >
+										<span asp-validation-for="Email"></span>
+									</div>
+									<div class="mb-4">
+										<label class="label-title">Password *</label>
+										<input asp-for="Password"  required="" class="form-control " placeholder="Password" >
+										<span asp-validation-for="Password"></span>
+									</div>
+									<div class="mb-4">
+									<label class="label-title">Confirm Password *</label>
+									<input asp-for="ConfirmPassword"  required="" class="form-control " placeholder="Canfirm Password">
+									<span asp-validation-for="ConfirmPassword"></span>
+							</div>
+									<div class="mb-5">
+										<small>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="privacy-policy.html">privacy policy</a>.</small>
+									</div>
+									<div class="text-left">
+										<button type="submit" class="btn btn-primary btnhover w-100 me-2">Register</button>
+									</div>
+									<div class="text-left">	Already have an account?
+										<button asp-action="login" class="btn btn-primary btnhover w-100 me-2">Login</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Product END -->
+			</section>
+			<!-- contact area End--> 
+		</div>
+		
+		
+		
+		<button class="scroltop" type="button"><i class="fas fa-arrow-up"></i></button>
+	</div>
+	
+<!-- JAVASCRIPT FILES ========================================= -->
+<script src="js/jquery.min.js"></script><!-- JQUERY MIN JS -->
+<script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP MIN JS -->
+<script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script><!-- BOOTSTRAP SELECT MIN JS -->
+<script src="js/custom.js"></script><!-- CUSTOM JS -->
+
+
+</body>
+
+<!-- Mirrored from bookland.dexignzone.com/xhtml/shop-registration.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 19 Dec 2022 16:19:18 GMT -->
+</html>
