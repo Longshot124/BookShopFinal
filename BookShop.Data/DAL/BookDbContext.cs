@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookShop.Data.DAL
 {
-    public class BookDbContext : DbContext
+    public class BookDbContext : IdentityDbContext<AppUser>
     {
         public BookDbContext(DbContextOptions<BookDbContext> options): base(options)
         {

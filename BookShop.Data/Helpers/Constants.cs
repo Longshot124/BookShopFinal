@@ -16,7 +16,11 @@ namespace BookShop.Data.Helpers
         public static string PartnerPath;
         public static string BlogPath;
         public static string FooterLogoPath;
+        public static string UserPath;
 
+
+        public const string AdminRole = "Admin";
+        public const string UserRole = "User";
        
     }
 }

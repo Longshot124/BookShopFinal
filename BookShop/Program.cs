@@ -3,12 +3,13 @@ using BookShop.Core.Data;
 using BookShop.Data.DAL;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using BookShop.Core.Entities;
 
 namespace BookShop
 {
     public class Program
     {
-        public static  void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -25,25 +26,19 @@ namespace BookShop
 
             });
 
-            //builder.Services.AddIdentity<User, IdentityRole>(options =>
-            //{
-            //    options.Lockout.MaxFailedAccessAttempts = 3;
-            //    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
-            //    options.SignIn.RequireConfirmedEmail = false;
-            //    options.User.RequireUniqueEmail = true;
-            //    options.Password.RequireUppercase = true;
-            //    options.Password.RequireLowercase = true;
-            //    options.Password.RequireNonAlphanumeric = true;
-            //})
-            //    .AddEntityFrameworkStores<BookDbContext>()
-            //   .AddDefaultTokenProviders()
-            //   .AddErrorDescriber<LocalizedIdentityErrorDescriber>();
+            builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.User.RequireUniqueEmail = false;
+                
 
+            }).AddEntityFrameworkStores<BookDbContext>().AddDefaultTokenProviders();
 
-
-            //builder.Services.AddSession(opt => opt.IdleTimeout = TimeSpan.FromMinutes(5));
-
-            //builder.Services.Configure<AdminUser>(builder.Configuration.GetSection("AminUser"));
+            builder.Services.Configure<AdminUser>(builder.Configuration.GetSection("AdminUser"));
 
             Constants.RootPath = builder.Environment.WebRootPath;
             Constants.AuthorPath = Path.Combine(Constants.RootPath, "assets", "images", "author");
@@ -52,6 +47,7 @@ namespace BookShop
             Constants.PartnerPath = Path.Combine(Constants.RootPath, "assets", "images", "partner");
             Constants.BlogPath = Path.Combine(Constants.RootPath, "assets", "images", "blog");
             Constants.FooterLogoPath = Path.Combine(Constants.RootPath, "assets", "images", "footerLogo");
+            Constants.UserPath = Path.Combine(Constants.RootPath, "assets", "images", "users");
 
 
 
@@ -72,7 +68,15 @@ namespace BookShop
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            //using (var scope = app.Services.CreateScope())
+            using (var scope = app.Services.CreateScope())
+            {
+                var serviceProvider = scope.ServiceProvider;
+
+                var dataInitializer = new DataInitializer(serviceProvider);
+
+                await dataInitializer.SeedData();
+            }
+            //using (var scope = app.Services.CreateScope(serviceProvider))
             //{
 
             //    var serviceProvider = scope.ServiceProvider;
@@ -106,7 +110,7 @@ namespace BookShop
 
 
             });
-             app.Run();
+             await app.RunAsync();
         }
     }
 }
