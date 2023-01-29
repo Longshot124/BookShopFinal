@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> _userManager;
+
+@{
+    var user = await _userManager.FindByNameAsync(User.Identity.IsAuthenticated ? User.Identity.Name : "");
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -132,21 +139,29 @@
                                     <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         @if (User.Identity.IsAuthenticated)
                                         {
-                                            <img src="~/assets/images/profile1.jpg" alt="/">
+                                            <img src="~/assets/images/users/@user.ImageUrl" alt="/">
                                             <div class="profile-info">
-                                                <h6 class="title">@User.Identity.Name</h6>
-                                                <span>info@gmail.com</span>
+                                                <h6 class="title">@user.UserName</h6>
+                                                <span>@user.Email</span>
                                             </div>
 
+                                        }
+                                        else
+                                        {
+                                            <img src="~/assets/images/users/3bd932fa-1f8b-43f0-9880-2ab2ad9278ec-profile1.jpg" alt="/">
+                                            <div class="profile-info">
+                                                <h6 class="title">My Account</h6>
+                                                
+                                            </div>
                                         }
 
                                     </a>
                                     <div class="dropdown-menu py-0 dropdown-menu-end">
-                                        @if(User.Identity.IsAuthenticated)
+                                        @if (User.Identity.IsAuthenticated)
                                         {
                                             <div class="dropdown-header">
                                                 <h6 class="m-0">@User.Identity.Name</h6>
-                                                <span>info@gmail.com</span>
+                                                <span>@user.Email</span>
                                             </div>
                                             <div class="dropdown-body">
                                                 <a href="my-profile.html" class="dropdown-item d-flex justify-content-between align-items-center ai-icon">
@@ -161,13 +176,34 @@
                                                         <span class="ms-2">Change Password</span>
                                                     </div>
                                                 </a>
-                                               
+
                                             </div>
                                             <div class="dropdown-footer">
                                                 <a class="btn btn-primary w-100 btnhover btn-sm" href="shop-login.html">Log Out</a>
                                             </div>
                                         }
-                                        
+                                        else
+                                        {
+                                             <div class="dropdown-header">
+                                                <h6 class="m-0">Name</h6>
+                                                <span>Email</span>
+                                            </div>
+                                            <div class="dropdown-body">
+                                                <a href="my-profile.html" class="dropdown-item d-flex justify-content-between align-items-center ai-icon">
+                                                    <div>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M12 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m0 10c2.7 0 5.8 1.29 6 2H6c.23-.72 3.31-2 6-2m0-12C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 10c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>
+                                                        <span class="ms-2">Profile</span>
+                                                    </div>
+                                                </a>
+                                                
+
+                                            </div>
+                                            <div class="dropdown-footer">
+                                                <a class="btn btn-primary w-100 btnhover btn-sm" href="shop-login.html">Log Out</a>
+                                            </div>
+                                        }
+
+
                                     </div>
                                 </li>
                             </ul>
