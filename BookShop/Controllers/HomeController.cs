@@ -1,4 +1,5 @@
-﻿using BookShop.Data.DAL;
+﻿using BookShop.BLL.Services;
+using BookShop.Data.DAL;
 using BookShop.Models;
 using BookShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,7 @@ namespace BookShop.Controllers
 
         public async Task<IActionResult> Index()
         {
+
             var slider = await _bookDbContext.Sliders
                 .Where(e => !e.IsDeleted)
                 .Include(e => e.Book).ThenInclude(e => e.Author)

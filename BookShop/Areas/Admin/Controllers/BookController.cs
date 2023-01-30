@@ -99,22 +99,18 @@ namespace BookShop.Areas.Admin.Controllers
             var categoryList = new List<SelectListItem>
             {
                 new SelectListItem("Category does't select","0")
-
             };
             var publisherList = new List<SelectListItem>
             {
                 new SelectListItem("Publisher does't select","0")
-
             };
             var authorList = new List<SelectListItem>
             {
                 new SelectListItem("Author does't select","0")
-
             };
             var bookLanguageList = new List<SelectListItem>
             {
                 new SelectListItem("Language does't select","0")
-
             };
             categories.ForEach(e => categoryList.Add(new SelectListItem(e.Name, e.Id.ToString())));
             publishers.ForEach(e => publisherList.Add(new SelectListItem(e.Name, e.Id.ToString())));
@@ -184,7 +180,6 @@ namespace BookShop.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
         public async Task<IActionResult> Update(int? id)
         {
             if (id == null) return NotFound();

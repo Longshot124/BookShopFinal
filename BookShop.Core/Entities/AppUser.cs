@@ -15,6 +15,6 @@ namespace BookShop.Core.Entities
         public string Gender { get; set; }
         public string? ImageUrl { get; set; }
         public string Adress { get; set; }
-        
+        public string EmailConfirmationToken { get; set; }
     }
 }

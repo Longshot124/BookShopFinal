@@ -4,6 +4,8 @@ using BookShop.Data.DAL;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using BookShop.Core.Entities;
+using BookShop.Data.Data;
+using BookShop.BLL.Services;
 
 namespace BookShop
 {
@@ -39,6 +41,9 @@ namespace BookShop
             }).AddEntityFrameworkStores<BookDbContext>().AddDefaultTokenProviders();
 
             builder.Services.Configure<AdminUser>(builder.Configuration.GetSection("AdminUser"));
+
+            builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("Email"));
+            builder.Services.AddTransient<IMailService, MailManager>();
 
             Constants.RootPath = builder.Environment.WebRootPath;
             Constants.AuthorPath = Path.Combine(Constants.RootPath, "assets", "images", "author");

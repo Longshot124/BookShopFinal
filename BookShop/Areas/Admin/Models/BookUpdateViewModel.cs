@@ -11,7 +11,6 @@ namespace BookShop.Areas.Admin.Models
         public List<SelectListItem> Authors { get; set; } = new();
         public List<SelectListItem> Publishers { get; set; } = new();
         public List<SelectListItem> BookLanguages { get; set; } = new();
-
         public IFormFile? Image { get; set; }
         public string Name { get; set; }
         public string BookInfo { get; set; }
