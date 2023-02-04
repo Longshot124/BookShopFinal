@@ -11,7 +11,7 @@ namespace BookShop.Data.DAL
 {
     public class BookDbContext : IdentityDbContext<AppUser>
     {
-        public BookDbContext(DbContextOptions<BookDbContext> options): base(options)
+        public BookDbContext(DbContextOptions<BookDbContext> options) : base(options)
         {
         }
 
@@ -25,5 +25,13 @@ namespace BookShop.Data.DAL
         public DbSet<BlogCategory> BlogCategories { get; set; }
         public DbSet<BookLanguage> BookLanguages { get; set; }
         public DbSet<FooterLogo> FooterLogos { get; set; }
+        public DbSet<Setting> Settings { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Setting>().HasIndex(k => k.Key).IsUnique();
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

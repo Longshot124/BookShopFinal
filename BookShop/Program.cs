@@ -27,7 +27,7 @@ namespace BookShop
                     });
 
             });
-
+                
             builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 options.Lockout.MaxFailedAccessAttempts = 5;
@@ -41,7 +41,8 @@ namespace BookShop
             }).AddEntityFrameworkStores<BookDbContext>().AddDefaultTokenProviders();
 
             builder.Services.Configure<AdminUser>(builder.Configuration.GetSection("AdminUser"));
-
+            builder.Services.AddScoped<LayoutService>();
+            builder.Services.AddHttpContextAccessor();
             builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("Email"));
             builder.Services.AddTransient<IMailService, MailManager>();
 

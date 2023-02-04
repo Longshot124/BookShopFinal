@@ -401,6 +401,33 @@ namespace BookShop.Migrations
                     b.ToTable("Publishers");
                 });
 
+            modelBuilder.Entity("BookShop.Core.Entities.Setting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Key")
+                        .IsUnique();
+
+                    b.ToTable("Settings");
+                });
+
             modelBuilder.Entity("BookShop.Core.Entities.Slider", b =>
                 {
                     b.Property<int>("Id")

@@ -1,5 +1,8 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using BookShop.BLL.Services
+@using Microsoft.AspNetCore.Identity
+@inject LayoutService layoutService;
 @inject UserManager<AppUser> _userManager;
+
 
 @{
     var user = await _userManager.FindByNameAsync(User.Identity.IsAuthenticated ? User.Identity.Name : "");
@@ -150,7 +153,7 @@
                                             <img src="~/assets/images/users/3bd932fa-1f8b-43f0-9880-2ab2ad9278ec-profile1.jpg" alt="/">
                                             <div class="profile-info">
                                                 <h6 class="title">My Account</h6>
-                                                
+
                                             </div>
                                         }
 
@@ -183,7 +186,7 @@
                                         }
                                         else
                                         {
-                                             <div class="dropdown-header">
+                                            <div class="dropdown-header">
                                                 <h6 class="m-0">Name</h6>
                                                 <span>Email</span>
                                             </div>
@@ -194,7 +197,7 @@
                                                         <span class="ms-2">Profile</span>
                                                     </div>
                                                 </a>
-                                                
+
 
                                             </div>
                                             <div class="dropdown-footer">
@@ -431,7 +434,7 @@
                                     <li>
                                         <i class="flaticon-phone"></i>
                                         <span>
-                                            +123 345123 556<br>
+                                            @layoutService.GetSettings().FirstOrDefault(p=>p.Key.Trim().ToLower()=="phonenumber")?.Value<br>
                                             +123 345123 556
                                         </span>
                                     </li>
@@ -473,6 +476,8 @@
     <button class="scroltop" type="button"><i class="fas fa-arrow-up"></i></button>
 
     <!-- JAVASCRIPT FILES ========================================= -->
+    <script src="~/assets/js/basket.js"></script><!-- BASKET JS -->
+
     <script src="~/assets/js/jquery.min.js"></script><!-- JQUERY MIN JS -->
     <script src="~/assets/vendor/wow/wow.min.js"></script><!-- WOW JS -->
     <script src="~/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script><!-- BOOTSTRAP MIN JS -->

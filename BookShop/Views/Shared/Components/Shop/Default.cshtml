@@ -37,7 +37,8 @@
 						<span class="price-num">$@book.Price</span>
 						<del>$@book.DiscountPrice</del>
 					</div>
-					<a href="shop-cart.html" class="btn btn-secondary box-btn btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> Add to cart</a>
+					
+					<a asp-controller="Basket" asp-action="addtobasket" asp-route-id="@book.Id" class="btn btn-secondary box-btn btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> Add to cart</a>
 				</div>
 			</div>
 		</div>
