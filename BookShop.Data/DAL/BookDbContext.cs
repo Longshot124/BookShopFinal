@@ -26,6 +26,9 @@ namespace BookShop.Data.DAL
         public DbSet<BookLanguage> BookLanguages { get; set; }
         public DbSet<FooterLogo> FooterLogos { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<ContactMessage> ContactMessages { get; set; }
+        public DbSet<WishList> WishList { get; set; }
+        public DbSet<WishListBook> WishListBook { get; set; } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

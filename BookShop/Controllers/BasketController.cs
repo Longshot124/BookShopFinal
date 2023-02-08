@@ -1,6 +1,6 @@
 ﻿using BookShop.Core.Entities;
 using BookShop.Data.DAL;
-using BookShop.ViewModels;
+using BookShop.BLL.BasketViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -66,7 +66,7 @@ namespace BookShop.Controllers
             basketStr = JsonConvert.SerializeObject(basket);
             HttpContext.Response.Cookies.Append("Basket", basketStr);
 
-            return RedirectToAction(nameof(ShowBasket));
+            return RedirectToAction("Shop","Index");
         }
 
         public IActionResult ShowBasket()

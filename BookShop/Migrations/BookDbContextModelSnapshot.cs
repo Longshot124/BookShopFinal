@@ -306,6 +306,41 @@ namespace BookShop.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("BookShop.Core.Entities.ContactMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactMessages");
+                });
+
             modelBuilder.Entity("BookShop.Core.Entities.FooterLogo", b =>
                 {
                     b.Property<int>("Id")
@@ -463,6 +498,52 @@ namespace BookShop.Migrations
                     b.HasIndex("BookId");
 
                     b.ToTable("Sliders");
+                });
+
+            modelBuilder.Entity("BookShop.Core.Entities.WishList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WishList");
+                });
+
+            modelBuilder.Entity("BookShop.Core.Entities.WishListBook", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("WishListId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("WishListId");
+
+                    b.ToTable("WishListBook");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -655,6 +736,25 @@ namespace BookShop.Migrations
                     b.Navigation("Book");
                 });
 
+            modelBuilder.Entity("BookShop.Core.Entities.WishListBook", b =>
+                {
+                    b.HasOne("BookShop.Core.Entities.Book", "Book")
+                        .WithMany("WishListBooks")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BookShop.Core.Entities.WishList", "WishList")
+                        .WithMany("WishListBooks")
+                        .HasForeignKey("WishListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("WishList");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -716,6 +816,11 @@ namespace BookShop.Migrations
                     b.Navigation("Blogs");
                 });
 
+            modelBuilder.Entity("BookShop.Core.Entities.Book", b =>
+                {
+                    b.Navigation("WishListBooks");
+                });
+
             modelBuilder.Entity("BookShop.Core.Entities.BookLanguage", b =>
                 {
                     b.Navigation("Books");
@@ -729,6 +834,11 @@ namespace BookShop.Migrations
             modelBuilder.Entity("BookShop.Core.Entities.Publisher", b =>
                 {
                     b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("BookShop.Core.Entities.WishList", b =>
+                {
+                    b.Navigation("WishListBooks");
                 });
 #pragma warning restore 612, 618
         }

@@ -24,5 +24,6 @@ namespace BookShop.Core.Entities
         public Category Category { get; set; }
         public Author Author { get; set; }  
         public BookLanguage BookLanguage { get; set; }
+        public ICollection<WishListBook> WishListBooks { get; set; }
     }
 }
