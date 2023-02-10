@@ -4,7 +4,10 @@ namespace BookShop.BLL.BasketViewModels
 {
     public class BasketItemVM
     {
-        public Book Book { get; set; }
-        public int Quantity { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string ImageUrl { get; set; }
+        public int Count { get; set; }
+        public decimal Price { get; set; }
     }
 }

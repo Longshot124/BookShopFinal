@@ -142,6 +142,55 @@ namespace BookShop.Migrations
                     b.ToTable("Authors");
                 });
 
+            modelBuilder.Entity("BookShop.Core.Entities.Basket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Baskets");
+                });
+
+            modelBuilder.Entity("BookShop.Core.Entities.BasketBook", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BasketId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BasketId");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("BasketBooks");
+                });
+
             modelBuilder.Entity("BookShop.Core.Entities.Blog", b =>
                 {
                     b.Property<int>("Id")
@@ -679,6 +728,25 @@ namespace BookShop.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("BookShop.Core.Entities.BasketBook", b =>
+                {
+                    b.HasOne("BookShop.Core.Entities.Basket", "Basket")
+                        .WithMany("BasketBooks")
+                        .HasForeignKey("BasketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BookShop.Core.Entities.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Basket");
+
+                    b.Navigation("Book");
+                });
+
             modelBuilder.Entity("BookShop.Core.Entities.Blog", b =>
                 {
                     b.HasOne("BookShop.Core.Entities.BlogCategory", "BlogCategory")
@@ -809,6 +877,11 @@ namespace BookShop.Migrations
             modelBuilder.Entity("BookShop.Core.Entities.Author", b =>
                 {
                     b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("BookShop.Core.Entities.Basket", b =>
+                {
+                    b.Navigation("BasketBooks");
                 });
 
             modelBuilder.Entity("BookShop.Core.Entities.BlogCategory", b =>

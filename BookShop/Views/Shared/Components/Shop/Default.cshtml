@@ -6,6 +6,8 @@
 @foreach (var book in Books)
 {
     <div class="col-book style-1">
+        <input type="hidden" id="productId" value="@book.Id" />
+
         <div class="dz-shop-card style-1">
             <div class="dz-media">
                 <a asp-controller="shop" asp-action="details" asp-route-id="@book.Id">
@@ -14,13 +16,13 @@
                 </a>
             </div>
             <div class="bookmark-btn style-2">
+                        
                 <input class="form-check-input" type="checkbox" id="flexCheckDefault2">
                 <label class="form-check-label" for="flexCheckDefault2">
                     <a id="productLink">
-                        <input type="hidden" id="productId" value="@book.Id"/>
                         <i id="@("favorite"+book.Id)" class="fa-regular fa-heart"></i>
                     </a>
-                </label> 
+                </label>
             </div>
             <div class="dz-content">
                 <h5 class="title"><a href="books-grid-view.html">@book.Name</a></h5>
@@ -41,7 +43,7 @@
                         <del>$@book.DiscountPrice</del>
                     </div>
 
-                    <a asp-controller="Basket" asp-action="addtobasket" asp-route-id="@book.Id" class="btn btn-secondary box-btn btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> Add to cart</a>
+                    <a id="add-product-to-cart" class="btn btn-secondary box-btn btnhover btnhover2"><i class="flaticon-shopping-cart-1 m-r10"></i> Add to cart</a>
                 </div>
             </div>
         </div>

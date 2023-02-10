@@ -2,7 +2,7 @@
 {
     public class BasketVM
     {
-        public List<BasketCookieItemVM> BasketCookieItemVMs { get; set; }
-        public decimal TotalPrice { get; set; }
+        public int Id { get; set; }
+        public int Count { get; set; }
     }
 }

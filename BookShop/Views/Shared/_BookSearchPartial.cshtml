@@ -1,0 +1,18 @@
+﻿@model List<Book>
+@foreach (var item in Model)
+{
+    <ul  class="custom-scroll">
+        <li>
+            <div class="product-cart media" style="display:flex; justify-content:space-between;">
+                <img src="~/assets/images/books/@item.ImageUrl"
+                class="img-fluid blur-up lazyload rounded-circle" style="width:75px; height:75px;" alt="">
+                <div class="media-body">
+                    <a asp-controller="Shop" asp-action="Details" asp-route-id="@item.Id">
+                        <h6 class="mb-1">@item.Name</h6>
+                    </a>
+                    <p class="mb-0 mt-1">$@item.Price</p>
+                </div>
+            </div>
+        </li>
+    </ul>
+}

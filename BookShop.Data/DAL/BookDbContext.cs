@@ -29,6 +29,9 @@ namespace BookShop.Data.DAL
         public DbSet<ContactMessage> ContactMessages { get; set; }
         public DbSet<WishList> WishList { get; set; }
         public DbSet<WishListBook> WishListBook { get; set; } 
+        public DbSet<Basket> Baskets { get; set; }  
+        public DbSet<BasketBook> BasketBooks { get; set; }  
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

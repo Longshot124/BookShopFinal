@@ -47,6 +47,27 @@ namespace BookShop.Controllers
 
             return View(book);
         }
+        public async Task<IActionResult> Search(string searchText)
+        {
+            if (string.IsNullOrEmpty(searchText))
+                return NoContent();
+
+            var books = await _bookDbContext.Books
+                .Where(book => !book.IsDeleted && book.Name.ToLower().StartsWith(searchText))
+                .ToListAsync();
+
+            var model = new List<Book>();
+
+            books.ForEach(book => model.Add(new Book
+            {
+                Id = book.Id,
+                Name = book.Name,
+                ImageUrl = book.ImageUrl,
+            }));
+
+            return PartialView("_BookSearchPartial", books);
+        }
+
         //public async Task<IActionResult> Search(string searchText)
         //{
         //    if (string.IsNullOrEmpty(searchText))

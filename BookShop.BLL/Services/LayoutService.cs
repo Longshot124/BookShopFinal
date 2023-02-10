@@ -30,26 +30,26 @@ namespace BookShop.BLL.Services
 			return settings;
 		}
 
-		public BasketVM GetBasket()
-		{
+		////public BasketVM GetBasket()
+		//{
 
-			string basketStr = _httpContextAccessor.HttpContext.Request.Cookies["Basket"];
-			if (!string.IsNullOrEmpty(basketStr))
-			{
-				BasketVM basket = JsonConvert.DeserializeObject<BasketVM>(basketStr);
-				LayoutBasketViewModel layoutBasketViewModel = new LayoutBasketViewModel();
-				foreach (BasketCookieItemVM cookie in basket.BasketCookieItemVMs)
-				{
-					Book existed = _bookDbContext.Books.FirstOrDefault(b => b.Id == cookie.Id);
-					if (existed == null)
-					{
-                        basket.BasketCookieItemVMs.Remove(cookie);
-                    }
+		//	string basketStr = _httpContextAccessor.HttpContext.Request.Cookies["Basket"];
+		//	if (!string.IsNullOrEmpty(basketStr))
+		//	{
+		//		BasketVM basket = JsonConvert.DeserializeObject<BasketVM>(basketStr);
+		//		LayoutBasketViewModel layoutBasketViewModel = new LayoutBasketViewModel();
+		//		foreach (BasketCookieItemVM cookie in basket.BasketCookieItemVMs)
+		//		{
+		//			Book existed = _bookDbContext.Books.FirstOrDefault(b => b.Id == cookie.Id);
+		//			if (existed == null)
+		//			{
+  //                      basket.BasketCookieItemVMs.Remove(cookie);
+  //                  }
 				
-				}
-				return basket;
-			}
-			return null; 
-		}
+		//		}
+		//		return basket;
+		//	}
+		//	return null; 
+		//}
 	}
 }
