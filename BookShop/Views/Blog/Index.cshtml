@@ -1,6 +1,5 @@
-﻿@using BookShop.ViewModels
-
-@model BlogViewModel
+﻿
+@model List<Blog>
 
 <div class="page-content">
 	<!-- inner page banner -->
@@ -23,7 +22,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xl-8 col-lg-8">
-					@foreach (var blog in Model.Blogs)
+					@foreach (var blog in Model)
 					{
 					<div class="dz-blog style-1 bg-white m-b30">
 						<div class="dz-media dz-img-effect zoom">
@@ -53,19 +52,11 @@
 							</div>
 
 							<h4 class="dz-title">
-								<a href="blog-detail.html">Books are the quietest and most constant of friends; and the most patient of teachers.</a>
+								<p>Books are the quietest and most constant of friends; and the most patient of teachers.</p>
 							</h4>
 						</div>
 					</div>
-					<nav aria-label="Blog Pagination">
-						<ul class="pagination text-center style-1 p-t20 m-b30">
-							<li class="page-item"><a class="page-link prev" href="javascript:void(0);">Prev</a></li>
-							<li class="page-item"><a class="page-link active" href="javascript:void(0);">1</a></li>
-							<li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-							<li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-							<li class="page-item"><a class="page-link next" href="javascript:void(0);">Next</a></li>
-						</ul>
-					</nav>
+					@await Html.PartialAsync("_PaginationPartialView")
 				</div>
 				<div class="col-xl-4 col-lg-4">
 					<aside class="side-bar sticky-top mt-lg-0 mt-md-5">
@@ -84,69 +75,31 @@
 						<div class="widget widget_categories">
 							<h4 class="widget-title">Category</h4>
 							<ul>
-								@foreach (var blogCategory in Model.BlogCategories)
-								{
-
-									<li class="cat-item cat-item-26"><a asp-controller="blog" asp-action="blogSidebarCategory" asp-route-id="@blogCategory.Id">@blogCategory.Name</a><span>(@blogCategory.Blogs.Count)</span></li>
-								}
+								@await Component.InvokeAsync("BlogCategory")
 								
 							</ul>
 						</div>
 						<div class="widget recent-posts-entry">
 							<h4 class="widget-title">Recent Posts</h4>
 							<div class="widget-post-bx">
-								<div class="widget-post clearfix">
-									<div class="dz-media">
-										<a href="blog-detail.html"><img src="images/blog/recent-blog/blog1.jpg" alt=""></a>
-									</div>
-									<div class="dz-info">
-										<h6 class="title"><a href="blog-detail.html">The Miracle Of Library In Mind.</a></h6>
-										<div class="dz-meta">
-											<ul>
-												<li class="post-date"> 7 March, 2022 </li>
-											</ul>
+								@foreach (var blog in Model)
+								{
+									<div class="widget-post clearfix">
+										<div class="dz-media">
+											<a asp-controller="blog" asp-action="details" asp-route-id="@blog.Id"> <img src="~/assets/images/blog/@blog.ImageUrl" alt=""></a>
+										</div>
+										<div class="dz-info">
+											<h6 class="title"><a href="blog-detail.html">@blog.Title</a></h6>
+											<div class="dz-meta">
+												<ul>
+													<li class="post-date">@blog.Created</li>
+												</ul>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="widget-post clearfix">
-									<div class="dz-media">
-										<a href="blog-detail.html"><img src="images/blog/recent-blog/blog2.jpg" alt=""></a>
-									</div>
-									<div class="dz-info">
-										<h6 class="title"><a href="blog-detail.html">Fall In Love With The Library</a></h6>
-										<div class="dz-meta">
-											<ul>
-												<li class="post-date"> 7 March, 2022 </li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="widget-post clearfix">
-									<div class="dz-media">
-										<a href="blog-detail.html"><img src="images/blog/recent-blog/blog3.jpg" alt=""></a>
-									</div>
-									<div class="dz-info">
-										<h6 class="title"><a href="blog-detail.html">So many books, so little time.</a></h6>
-										<div class="dz-meta">
-											<ul>
-												<li class="post-date"> 7 March, 2022 </li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="widget-post clearfix">
-									<div class="dz-media">
-										<a href="blog-detail.html"><img src="images/blog/recent-blog/blog1.jpg" alt=""></a>
-									</div>
-									<div class="dz-info">
-										<h6 class="title"><a href="blog-detail.html">Omg! The Best Library Ever!</a></h6>
-										<div class="dz-meta">
-											<ul>
-												<li class="post-date"> 7 March, 2022 </li>
-											</ul>
-										</div>
-									</div>
-								</div>
+
+								}
+								
 							</div>
 						</div>
 						<div class="widget widget_tag_cloud">

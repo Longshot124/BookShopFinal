@@ -25,7 +25,7 @@
 						<!-- blog start -->
 						<div class="dz-blog blog-single style-1">
 							<div class="dz-media rounded-md">
-								<img src="~/assets/images/blog/default/@blog.ImageUrl" alt="">
+								<img src="~/assets/images/blog/@blog.ImageUrl" alt="">
 							</div>
 							<div class="dz-info">
 								<div class="dz-meta  border-0 py-0 mb-2">
@@ -220,11 +220,7 @@
 							<div class="widget widget_categories">
 								<h4 class="widget-title">Category</h4>
 								<ul>
-									<li class="cat-item cat-item-26"><a href="blog-list-sidebar.html">Audio</a> (3)</li>                                         
-									<li class="cat-item cat-item-36"><a href="blog-list-sidebar.html">Beauty</a> (4)</li>                                         
-									<li class="cat-item cat-item-43"><a href="blog-list-sidebar.html">Fashion</a> (3)</li>                                         
-									<li class="cat-item cat-item-27"><a href="blog-list-sidebar.html">Images</a> (1)</li>                                         
-									<li class="cat-item cat-item-40"><a href="blog-list-sidebar.html">Lifestyle</a> (3)</li> 
+									@await Component.InvokeAsync("BlogCategory")
 								</ul>
 							</div>
 							<div class="widget recent-posts-entry">

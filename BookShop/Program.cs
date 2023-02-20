@@ -54,13 +54,11 @@ namespace BookShop
             Constants.BlogPath = Path.Combine(Constants.RootPath, "assets", "images", "blog");
             Constants.FooterLogoPath = Path.Combine(Constants.RootPath, "assets", "images", "footerLogo");
             Constants.UserPath = Path.Combine(Constants.RootPath, "assets", "images", "users");
-
-
+            Constants.AboutPath = Path.Combine(Constants.RootPath, "assets", "images", "about");
+            Constants.NewsPath = Path.Combine(Constants.RootPath, "assets", "images", "news");
 
 
             var app = builder.Build();
-
-            
 
 
             // Configure the HTTP request pipeline.
@@ -70,6 +68,7 @@ namespace BookShop
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseStatusCodePagesWithReExecute("/Home/Error404", "?code={0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -82,20 +81,7 @@ namespace BookShop
 
                 await dataInitializer.SeedData();
             }
-            //using (var scope = app.Services.CreateScope(serviceProvider))
-            //{
-
-            //    var serviceProvider = scope.ServiceProvider;
-            //    var dataInitializer = new DataInitializer(serviceProvider);
-
-            //    await dataInitializer.SeedData();
-            //    //var bookDbContext = scope.ServiceProvider.GetRequiredService<BookDbContext>();
-            //    //var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
-            //    //var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-            //    //var dataInitializer = new DataInitializer(bookDbContext, userManager, roleManager);
-            //    //await dataInitializer.SeedData();
-            //}
+           
 
             app.UseRouting();
 

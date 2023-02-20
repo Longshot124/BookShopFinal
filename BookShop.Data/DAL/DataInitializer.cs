@@ -58,6 +58,10 @@ namespace BookShop.Data.DAL
             {
                 UserName = _adminUser.Username,
                 Email = _adminUser.Email,
+                EmailConfirmationToken = _adminUser.EmailConfirmationToken,
+                Age = _adminUser.Age,
+                Adress=_adminUser.Adress,
+                Gender=_adminUser.Gender
 
             }, _adminUser.Password);
 

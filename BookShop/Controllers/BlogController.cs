@@ -1,6 +1,7 @@
 ﻿using BookShop.Data.DAL;
 using BookShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookShop.Controllers
@@ -14,16 +15,20 @@ namespace BookShop.Controllers
             _bookDbContext = bookDbContext;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             var blog = await _bookDbContext.Blogs.Where(e => !e.IsDeleted).ToListAsync();
-            var blogCategory = await _bookDbContext.BlogCategories.Where(e => !e.IsDeleted).ToListAsync();
-            var blogViewModel = new BlogViewModel
-            {
-              Blogs = blog,
-              BlogCategories = blogCategory
-            };
-            return View(blogViewModel);
+
+
+            int perPage = 1;
+            int pageCount = (int)Math.Ceiling((double)blog.Count() / perPage);
+            if (page <= 0) page = 1;
+            if (page > pageCount) page = pageCount;
+
+            ViewBag.CurrentPage = page;
+            ViewBag.PageCount = pageCount;
+
+            return View(blog.Skip((page - 1) * perPage).Take(perPage).ToList());
         }
 
         public async Task<IActionResult> Details(int? id)

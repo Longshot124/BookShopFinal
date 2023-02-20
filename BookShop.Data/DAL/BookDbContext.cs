@@ -31,6 +31,11 @@ namespace BookShop.Data.DAL
         public DbSet<WishListBook> WishListBook { get; set; } 
         public DbSet<Basket> Baskets { get; set; }  
         public DbSet<BasketBook> BasketBooks { get; set; }  
+        public DbSet<About> Abouts { get; set; }
+        public DbSet<OurMission> OurMissions { get; set; }
+        public DbSet<News> News { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

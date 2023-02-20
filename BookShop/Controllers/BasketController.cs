@@ -39,21 +39,24 @@ namespace BookShop.Controllers
                     .ThenInclude(x => x.Book)
                     .FirstOrDefaultAsync();
 
-                foreach (var item in basket.BasketBooks)
+                if (basket != null)
                 {
-                    var product = _dbContext.Books
-                        .Where(p => p.Id == item.Book.Id && !p.IsDeleted)
-                        
-                        .FirstOrDefault();
-
-                    model.Add(new BasketItemVM
+                    foreach (var item in basket.BasketBooks)
                     {
-                        Id = product.Id,
-                        Name = product.Name,
-                        Price = product.Price,
-                        Count = item.Count,
-                        ImageUrl = product.ImageUrl,
-                    });
+                        var product = _dbContext.Books
+                            .Where(p => p.Id == item.Book.Id && !p.IsDeleted)
+
+                            .FirstOrDefault();
+
+                        model.Add(new BasketItemVM
+                        {
+                            Id = product.Id,
+                            Name = product.Name,
+                            Price = product.Price,
+                            Count = item.Count,
+                            ImageUrl = product.ImageUrl,
+                        });
+                    }
                 }
             }
             else

@@ -2,6 +2,7 @@
 using BookShop.Data.DAL;
 using BookShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookShop.Controllers
@@ -15,7 +16,7 @@ namespace BookShop.Controllers
             _bookDbContext = bookDbContext;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             var books = await _bookDbContext.Books
                 .Where(c => !c.IsDeleted)
@@ -24,15 +25,15 @@ namespace BookShop.Controllers
                 .Include(c => c.Publisher)
                 .ToListAsync();
 
-            var category = await _bookDbContext.Categories.Where(c => !c.IsDeleted).ToListAsync();
+            int perPage = 4;
+            int pageCount = (int)Math.Ceiling((double)books.Count() / perPage);
+            if (page <= 0) page = 1;
+            if (page > pageCount) page = pageCount;
 
-            var viewModel = new ShopViewModel
-            {
-                Books = books,
-                Categories = category
-            };
+            ViewBag.CurrentPage = page;
+            ViewBag.PageCount = pageCount;
 
-            return View(viewModel);
+            return View(books.Skip((page - 1) * perPage).Take(perPage).ToList());
         }
         public async Task<IActionResult> Details(int? id)
         {
@@ -47,57 +48,25 @@ namespace BookShop.Controllers
 
             return View(book);
         }
-        public async Task<IActionResult> Search(string searchText)
-        {
-            if (string.IsNullOrEmpty(searchText))
-                return NoContent();
 
-            var books = await _bookDbContext.Books
-                .Where(book => !book.IsDeleted && book.Name.ToLower().StartsWith(searchText))
-                .ToListAsync();
+        
 
-            var model = new List<Book>();
-
-            books.ForEach(book => model.Add(new Book
-            {
-                Id = book.Id,
-                Name = book.Name,
-                ImageUrl = book.ImageUrl,
-            }));
-
-            return PartialView("_BookSearchPartial", books);
-        }
-
-        //public async Task<IActionResult> Search(string searchText)
-        //{
-        //    if (string.IsNullOrEmpty(searchText))
-        //        return NoContent();
-
-        //    var books = await _bookDbContext.Books
-        //        .Where(book => !book.IsDeleted && book.Name.ToLower().Contains(searchText.ToLower()))
-        //        .ToListAsync();
-
-        //    var model = new List<Book>();
-
-        //    books.ForEach(book => model.Add(new Book
-        //    {
-        //        Id = book.Id,
-        //        ImageUrl = book.ImageUrl,
-        //        BookInfo= book.BookInfo,
-        //    }));
-
-        //    return View(model);
-
-        //    //return PartialView("_CourseSearchPartial", courses);
-        //}
-
-        public async Task<IActionResult> BookSidebar(int? id)
+        public async Task<IActionResult> ShopSideBarCategory(int? id, int page = 1)
         {
             var categories = await _bookDbContext.Categories
                 .Where(c => c.Id == id)
-                .Include(c => c.Books)
+                .Include(c => c.Books).ThenInclude(a=>a.Author)
                 .ToListAsync();
-            return View(categories);
+
+            int perPage = 8;
+            int pageCount = (int)Math.Ceiling((double)categories.Count() / perPage);
+
+            if (page <= 0) page = 1;
+            if (page > pageCount) page = pageCount;
+
+            ViewBag.CurrentPage = page;
+            ViewBag.PageCount = pageCount;
+            return View(categories.Skip((page - 1) * perPage).Take(perPage).ToList());
         }
 
     }

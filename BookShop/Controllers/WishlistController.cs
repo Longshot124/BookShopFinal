@@ -36,16 +36,19 @@ namespace BookShop.Controllers
                     .ThenInclude(x => x.Book)
                     .FirstOrDefaultAsync();
 
-                foreach (var item in wishList.WishListBooks)
+                if (wishList != null)
                 {
-                    model.Add(new WishListViewModel
+                    foreach (var item in wishList.WishListBooks)
                     {
-                        Id = item.BookId,
-                        Name = item.Book.Name,
-                        Price = item.Book.Price,
-                        Offer = item.Book.Offer,
-                        ImageUrl = item.Book.ImageUrl
-                    });
+                        model.Add(new WishListViewModel
+                        {
+                            Id = item.BookId,
+                            Name = item.Book.Name,
+                            Price = item.Book.Price,
+                            Offer = item.Book.Offer,
+                            ImageUrl = item.Book.ImageUrl
+                        });
+                    }
                 }
             }
             else

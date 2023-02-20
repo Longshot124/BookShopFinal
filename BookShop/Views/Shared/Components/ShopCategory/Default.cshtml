@@ -1,0 +1,16 @@
+﻿@model ShopCategoryViewModel
+@{
+    ViewData["Title"] = "Default";
+    var categories = Model.Categories;
+}
+
+@foreach (var category in categories)
+{
+
+    <div class="form-check search-content">
+        <a asp-controller="Shop" asp-action="ShopSideBarCategory" asp-route-id="@category.Id" class="form-check-label" for="productCheckBox1">
+            @category.Name
+        </a>
+    </div>
+}
+

@@ -1,4 +1,5 @@
 ﻿using BookShop.BLL.Services;
+using BookShop.Core.Entities;
 using BookShop.Data.DAL;
 using BookShop.Models;
 using BookShop.ViewModels;
@@ -38,10 +39,37 @@ namespace BookShop.Controllers
             return View(homeViewModel);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public async Task<IActionResult> Search(string searchText)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (string.IsNullOrEmpty(searchText))
+                return NoContent();
+
+            var books = await _bookDbContext.Books
+                .Where(book => !book.IsDeleted && book.Name.ToLower().StartsWith(searchText))
+                .ToListAsync();
+
+            var model = new List<Book>();
+
+            books.ForEach(book => model.Add(new Book
+            {
+                Id = book.Id,
+                Name = book.Name,
+                ImageUrl = book.ImageUrl,
+            }));
+
+            return PartialView("_BookSearchPartial", books);
         }
+
+        public IActionResult Error404(int code)
+        {
+            ErrorViewModel error = new ErrorViewModel()
+            {
+                StatusCode = HttpContext.Response.StatusCode,
+                Title = HttpContext.Response.Headers.ToString()
+
+            };
+            return View();
+        }
+
     }
 }
